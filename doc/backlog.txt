@@ -1,0 +1,14 @@
+Pending tasks:
+
+- Add complex validators, such as: 
+   - do not allow a scholarship to be alocated to more than one scholarship if the start-date and end-date overlap
+   - do not allow a new enrollment to the same student unless his other enrollments have assigned dismissals
+   - ...
+- Update UML model
+
+- Access control: we implemented a very basic support. It is missing a logout 
+option, timeout and the definition of different types of users (admin, plain). Only
+admin users should be able to create new users or edit their data. Plain
+users would be allowed only to change his data. At that moment, all 
+functionalities are open to all users. Check restful_authentication and 
+AuthLogic as alternatives to implement a real authentication support.

@@ -1,0 +1,296 @@
+
+body {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11pt;
+    padding: 0;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    /* background-image: url("steel-mesh-pattern.png"); */
+    height: 100%;
+}
+
+body a {
+    color: #464d57;
+}
+
+#main_content {
+    padding: 10px;
+}
+
+.clear_float {
+    clear: both;
+}
+
+.menu {
+    background-color: transparent;
+    width: 1030px;
+    margin: 0px auto -1px auto;
+}
+
+.menu .header {
+    color: #d4e8d3;
+    font-size: 20pt;
+    padding: 1px;
+}
+
+.menu .header .logo {
+    float: left;
+    padding-top: 5px;
+    padding-left: 1px;
+}
+
+.menu .header .sub {
+    font-size: 12px;
+    font-weight: bold;
+    float: right;
+    padding: 5px;
+}
+
+.menu .header .sub a {
+    color: #656464;
+}
+
+#menubardiv{
+    background: url("menubardiv.png") repeat-x;
+    height: 12px;
+    width: 100%;
+    position: absolute;
+    margin-top: 129px;
+}
+
+#steelmeshdark{
+    position: absolute;
+    height: 129px;
+    width: 100%;
+    z-index: -100;
+}
+
+#saposgif{
+    color: #656464;
+    vertical-align: middle;
+}
+
+#saposgif img {
+    vertical-align: bottom;
+}
+
+.menu .footer {
+    background-color: #FFFFFF;
+    padding: 5px;
+    font-size: 10pt;
+}
+
+.menu .footer .src_code {
+    float: left;
+}
+
+.menu .footer .styling {
+    float: right;
+}
+
+.menu_content {
+    border: 1px solid #c8c6c6;
+    border-top: none;
+    background-color: #FFFFFF;
+
+    border-radius: 10px 10px 0 0;
+}
+
+/* Fluids */
+
+.menu_content .content_wrapper {
+    height: auto;
+    overflow: hidden;
+    min-height: 100%;
+}
+
+/* Right Fluid */
+.content_wrapper > .content {
+    float: none;
+    width: auto;
+    overflow: hidden;
+   min-height: 234px; 
+ /*     padding-bottom: 10px;*/
+    border-left: 1px solid #9f9f9f;
+   
+}
+
+#sub_navigation:empty + .content {
+    border-left: none;
+}
+    
+/*Right Fluid - Top Navigation*/
+.menu_content #top_navigation {
+    float: left;
+    width: 100%;
+    background-color: #e8e8e8;
+    border-top: 1px solid #c8c6c6;
+}
+
+.menu_content #top_navigation ul {
+    height: 25px;
+    margin: 0 30px 0 0;
+    padding: 0;
+}
+
+.menu_content #top_navigation ul li {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu_content #top_navigation ul li a {
+    float: left;
+    font-size: 10pt;
+    font-weight: normal;
+    margin: 0;
+    padding: 7px 10px;
+    border-right: 1px dotted #919191;
+    color: #656565;
+    text-decoration: none;
+    background: #e8e8e8;
+
+    &:hover {
+        background: #bad1e0;
+    }
+
+    &.selected {
+        background: #bad1e0;
+        font-weight: bold;
+    }
+}
+
+/*Left Fluid - Sub navigation*/
+.menu_content #sub_navigation {
+    float: left;
+    background-color: #FFFFFF;
+    width: 150px;
+    height: 100%;
+    border-top: 1px solid #c8c6c6;
+    border-bottom: none;
+
+}
+
+.menu_content #sub_navigation:empty {
+    display: none;
+}
+
+/*hack to overwrite default ul property*/
+.menu_content #sub_navigation ul{
+    margin-top: 0;
+}
+
+.menu_content #sub_navigation li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu_content #sub_navigation li a {
+    float: right;
+    font-size: 10pt;
+    font-weight: normal;
+    padding: 10px 10px;
+    background-size: 10px 10px;
+    border-bottom: 1px dotted #9f9f9f;
+  /*   border-right: 1px dotted #9f9f9f; */
+    color: #656464;
+    text-decoration: none;
+    width: 130px;
+    text-align: left;
+}
+
+.menu_content #sub_navigation li a:hover {
+    background-color: #e1faff;
+
+}
+
+.menu_content #sub_navigation li a.selected {
+    background-color: #d9e5ed;
+    color: #3e82ae;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.breadcrumbs {
+    font-size: 12px;
+}
+
+.breadcrumbs .title {
+    float: left;
+    margin-right: 5px;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+
+/*Login module CSS*/
+#logout_button{
+    float: right;
+}
+
+#logout_button > *{
+    color: #3e82ae;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+#login_form_wrapper{
+    width: 310px;
+    margin-left: 33%;
+    padding: 30px;
+}
+
+#form_border{
+    border: 1px solid #bbc5d1;
+    padding: 20px;
+
+    background: #deeef9;
+}
+
+#login_form{
+    border-style: none;
+}
+
+#login_input > label{
+    margin-right: 6px;
+}
+
+#error_login{
+    background-color: #fcc;
+    margin: 10px 0px;
+    border: solid 1px #f66;
+    padding: 5px 0 5px 12px;
+}
+
+#remember_me_input > label{
+    font-size: 12px;
+    margin-top: -1px;
+}
+
+.inline-adapter-cell div.actions {
+    display: none;
+}
+
+.inline-adapter-cell .active-scaffold-header {
+    display: none;
+}
+
+.inline-adapter-cell .active-scaffold > table{
+    display: none;
+}
+
+
+
+
+#login_form input#user_email,
+#login_form input#user_password {
+    width: 260px;
+}

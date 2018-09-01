@@ -1,0 +1,43 @@
+This file lists all commands used to create entities and their CRUD:
+
+Sponsor: 
+    rails generate active_scaffold Sponsor name:string
+Institution: 
+    rails generate active_scaffold Institution name:string
+Level: 
+    rails generate active_scaffold Level name:string
+Major:
+    rails generate active_scaffold Major name:string level:references institution:references
+Student: 
+    rails generate active_scaffold Student name:string cpf:string
+    rails generate migration AddObsToStudent obs:text
+    (this migration was necessary because I forgot to add obs when generating Student)
+Major-Student:
+    rails generate migration CreateMajorsStudents
+    (followed by the edition of the created migration. Check the migration for future join tables)
+EnrollmentStatus:
+    rails generate active_scaffold EnrollmentStatus name:string
+Enrollment:
+    rails generate active_scaffold Enrollment enrollment_number:string student:references level:references enrollment_status:references admission_date:date obs:text
+DismissalReason:
+    rails generate active_scaffold DismissalReason name:string description:text
+Dismissal:
+    rails generate active_scaffold Dismissal date:date enrollment:references dismissal_reason:references obs:text
+ScholarshipType: 
+    rails generate active_scaffold ScholarshipType name:string
+Professor:
+    rails generate active_scaffold Professor name:string cpf:string birthdate:date
+Advisement:
+    rails generate active_scaffold Advisement professor:references enrollment:references main_advisor:boolean
+    (followed by the edition of the created migration. Check the migration for future join tables with attributes)
+    (basically, were added indexes to the migration and has_many and has_many :through attributes to the related models)
+Scholarship:
+    rails generate active_scaffold Scholarship scholarship_number:string level:references sponsor:references scholarship_type:references start_date:date end_date:date obs:text
+    rails generate migration AddProfessorToScholarship professor_id:integer
+    (this migration was necessary because I forgot to add relationship to Professor when generating Scholarship)
+ScholarshipDuration:
+    rails generate active_scaffold ScholarshipDuration scholarship:references enrollment:references start_date:date end_date:date obs:text
+    (followed by the edition of the created migration. Check the migration for future join tables with attributes)
+    (basically, were added indexes to the migration and has_many and has_many :through attributes to the related models)
+User:
+    rails generate active_scaffold User name:string hashed_password:string salt:string
