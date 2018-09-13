@@ -10,18 +10,16 @@ class FormImagesController < ApplicationController
     config.list.columns = [
         :name,  
         :text, 
-	      :form
     ]
 
     columns = [
         :name, 
         :image, 
-        :text, 
-	      :form
+        :text
     ]
 
-    config.columns[:form].search_ui = :record_select
-    config.columns[:form].form_ui = :record_select
+    #config.columns[:form].search_ui = :record_select
+    #config.columns[:form].form_ui = :record_select
     config.create.label = :create_form_image_label
     config.update.label = :update_form_image_label
     config.create.columns = columns

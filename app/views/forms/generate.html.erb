@@ -1,69 +1,79 @@
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<div id="content">
-
-</div>
-<a id="pdf">
-  Gerar PDF
-</a>
-<script id="entry-template" type="text/x-handlebars-template">
-	<%= @template %>
-</script>
-<script type="text/javascript">
-// Dados
-
-
-function keepHtml(unsafe) {
-    return unsafe
-         .replace(/&amp;/g, "&")
-         .replace(/&lt;/g, "<")
-         .replace(/&gt;/g, ">")
-         .replace(/&quot;/g, '"')
-         .replace(/&#039;/g, "'");
- }
-
-var data = [];
-
-var rawColumns = '<%= @query_result[:rows] %>';
-var columns = rawColumns;
-//if (columns[0] == '[' && columns[1] == '[')
-//	columns = columns.substr(1,columns.length - 2);
-columns = columns.replace(/nil/g, 'null');
-var parsedColumns = JSON.parse(keepHtml(columns));
-var row;
-<% @query_result[:rows].each_with_index do |column_name, rowNumber| %>
-row = new Object;
-	<% @query_result[:columns].each_with_index do |column_name, columnNumber| %>
-	row["<%= column_name %>"] = parsedColumns[<%= rowNumber %>][<%= columnNumber %>];
-	<% end %>
-data.push(row);
-<% end %>
-
-var result = new Object;
-result.data = data;
-var code = $("#entry-template").html();
-var template = Handlebars.compile(code);
-var content = template(result);
-
-$('#content').html(keepHtml(content));
+<html>
+  <head>
+  </head>
+  <body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <div id="content">
+    Carregando...
+    </div>
+    <script id="entry-template" type="text/x-handlebars-template">
+      <%= @template %>
+    </script>
+    <script type="text/javascript">
+    // Dados
 
 
-// Imagens
+    function keepHtml(unsafe) {
+        return unsafe
+             .replace(/&amp;/g, "&")
+             .replace(/&lt;/g, "<")
+             .replace(/&gt;/g, ">")
+             .replace(/&quot;/g, '"')
+             .replace(/&#039;/g, "'");
+     }
 
-var imagesMap = {};
+    var data = [];
 
-<% @images.each  do |image|%>
+    var rawColumns = '<%= @query_result[:rows] %>';
+    var columns = rawColumns;
+    //if (columns[0] == '[' && columns[1] == '[')
+    //	columns = columns.substr(1,columns.length - 2);
+    columns = columns.replace(/nil/g, 'null');
+    var parsedColumns = JSON.parse(keepHtml(columns));
+    var row;
+    <% @query_result[:rows].each_with_index do |column_name, rowNumber| %>
+    row = new Object;
+      <% @query_result[:columns].each_with_index do |column_name, columnNumber| %>
+      row["<%= column_name %>"] = parsedColumns[<%= rowNumber %>][<%= columnNumber %>];
+      <% end %>
+    data.push(row);
+    <% end %>
 
-imagesMap["<%= image.name %>"] = "<%=image.image%>";
+    var result = new Object;
+    result.data = data;
+    var code = $("#entry-template").html();
+    var template = Handlebars.compile(code);
+    var content = template(result);
 
-<% end %>
-$(document).ready(function(){
-	$('img.sapos').each(function(){
+    document.getElementById('content').innerHTML = keepHtml(content);
 
-     		$(this).attr('src', '/' + imagesMap[$(this).attr('id')])
 
-	});
-	$('#pdf').attr('src', 'http://localhost:3000/forms/4/pdf');
-});
-</script>
+    // Imagens
+
+    var imagesMap = {};
+
+    <% @images.each  do |image|%>
+
+    imagesMap["<%= image.name %>"] = "<%=image.image%>";
+
+    <% end %>;
+
+    var imgteste = [];
+    <% @teste.each do |imagem| %>
+
+    imgteste["<%= imagem[:nome] %>"] = "<%= imagem[:base64] %>"
+    <% end %>
+      $('img.sapos').each(function(){
+
+            $(this).attr('src', 'data:image/png;base64, ' + imgteste[$(this).attr('id')])
+
+      });
+    </script>
+    <script>
+      window.status = 'ready';
+    </script>
+  </body>
+</html>

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # The following line is necessary to allow RVM choosing the correct ruby version. RVM 2.0 will probably be able to interpret the "~>" symbol and we will be able to safely remove the "#ruby=2.4" line.
 #ruby=2.4
-ruby '2.3.1'
+ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.1.4'
@@ -36,7 +36,7 @@ gem "kaminari"
 #gem "schema_plus"
 
 gem 'cancancan'
-gem "devise"
+gem "devise", git: 'https://github.com/plataformatec/devise' #, ref: '88e9a85'
 gem "paper_trail"
 
 gem 'sql-parser'
@@ -108,6 +108,8 @@ gem 'wkhtmltopdf-binary'
 
 # HTML to PDF Converter. Uses wkhtmltopdf
  gem 'pdfkit'
+
+# gem 'wicked_pdf'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

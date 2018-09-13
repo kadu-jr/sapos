@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180728000134) do
+ActiveRecord::Schema.define(version: 20180901230532) do
 
   create_table "accomplishments", force: :cascade do |t|
     t.integer "enrollment_id"
@@ -59,6 +59,11 @@ ActiveRecord::Schema.define(version: 20180728000134) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "reference_counter", default: 0
+  end
+
+  create_table "categories_users", id: false, force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -224,6 +229,11 @@ ActiveRecord::Schema.define(version: 20180728000134) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["form_id"], name: "form_images_form_id_index"
+  end
+
+  create_table "form_images_forms", id: false, force: :cascade do |t|
+    t.integer "form_id", null: false
+    t.integer "form_image_id", null: false
   end
 
   create_table "form_templates", force: :cascade do |t|

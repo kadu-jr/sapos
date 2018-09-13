@@ -1,6 +1,7 @@
 class FormsController < ApplicationController
-#  authorize_resource
-   skip_authorization_check
+  require 'base64'
+authorize_resource
+
 
   active_scaffold :form do |config|
 
@@ -15,7 +16,7 @@ class FormsController < ApplicationController
     config.columns[:query].form_ui = :record_select
     config.columns[:template].search_ui = :record_select
     config.columns[:template].form_ui = :record_select
-    config.update.columns = [:nome, :descricao, :query, :template]
+    config.update.columns = [:nome, :descricao, :query, :template, :form_image]
     config.list.columns = [:nome, :descricao, :query, :template]
 
     config.columns[:descricao].form_ui = :textarea
@@ -25,7 +26,7 @@ class FormsController < ApplicationController
 
     #config.columns[:params].allow_add_existing = false
     #config.columns[:params].clear_link
-    config.create.columns = [:nome, :descricao, :query, :template]
+    config.create.columns = [:nome, :descricao, :query, :template, :form_image]
     # config.show.columns = form_columns + [:next_execution]
     # config.list.columns = [:title, :frequency, :notification_offset, :query_offset, :next_execution]
 
@@ -37,25 +38,46 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     @query = Query.find(@form.query_id)
     @query_result = @query.execute(get_simulation_params)
-    render :action => 'execute'
   end
 
   def generate
 	  form = Form.find(params[:id])
     query = Query.find(form.query_id)
     @query_result = query.execute(get_simulation_params)
-	  @images = FormImage.where(form_id: params[:id])
+	  @images = form.form_image
+    @teste = []
+    @images.each do |image|
+      hash = {nome: image.name, base64: Base64.encode64(image.image.read).gsub("\n", '')}
+      @teste.push(hash)
+    end
     formTemplate = FormTemplate.find(form.template_id)
     @template = formTemplate.code
-	  render :action => 'generate'
+    #render "generate", layout: false
+    html = render_to_string :action => 'generate', :locals => {:query_result => @query_result, :images => @imagems, :template => @template, :teste => @teste}, layout: false
+
+    kit = PDFKit.new(html, page_size: 'A4')
+    pdf = kit.to_pdf
+    send_data(pdf,          filename: 'Relatorio.pdf',          disposition: 'inline',          type: :pdf,          window_status: 'ready')
   end
 
-  def pdf
-    kit = PDFKit.new("http://localhost:3000/forms/4/generate", page_size: 'A4')
+  def print
+    kit = PDFKit.new(html, page_size: 'A4')
+    puts(kit.command)
     pdf = kit.to_pdf
     send_data(pdf,
               filename: 'Relatorio.pdf',
-              disposition: 'attachment',
+              disposition: 'inline  ',
+              type: :pdf, 
+              window_staus: 'ready')
+  end
+
+  def pdf
+    html = render_to_string :template => "forms/consult"
+    kit = PDFKit.new(html, page_size: 'A4', window_staus: 'ready')
+    pdf = kit.to_pdf
+    send_data(pdf,
+              filename: 'Relatorio.pdf',
+              disposition: 'inline  ',
               type: :pdf)
 
   end

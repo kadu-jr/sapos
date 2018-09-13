@@ -3,11 +3,10 @@
 # This file is part of SAPOS. Please, consult the license terms in the LICENSE file
 
 class FormImage < ApplicationRecord
-  belongs_to :form
   has_paper_trail
+  has_and_belongs_to_many  :form
 
   validates :text, :presence => true
-  validates :form, :presence => true
 
   mount_uploader :image, FormImageUploader
 
