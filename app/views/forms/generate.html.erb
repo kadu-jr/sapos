@@ -10,8 +10,39 @@
     Carregando...
     </div>
     <script id="entry-template" type="text/x-handlebars-template">
-      <%= @template %>
+      <%= @consulta["template"] %>
     </script>
+    <script>
+        function mesNome(mes){
+
+            switch (mes){
+                case 1: return 'janeiro';
+                case 2: return 'fevereiro';
+                case 3: return 'março';
+                case 4: return 'abril';
+                case 5: return 'maio';
+                case 6: return 'junho';
+                case 7: return 'julho';
+                case 8: return 'agosto';
+                case 9: return 'setembro';
+                case 10: return 'outubro';
+                case 11: return 'novembro';
+                case 12: return 'dezembro';
+            }
+        }
+        function mostraData(data){
+
+            var date = new Date(data);
+            console.log(date);
+            if (date == "Invalid Date")
+                return "--/--/----";
+            var diaInteiro = 	[date.getDate(), mesNome(date.getMonth() + 1), date.getFullYear()]
+            var horaInteira = 	[date.getHours(), date.getMinutes()]
+            document.getElementById("diaHora").innerHTML = diaInteiro.join(' de ') + " " + horaInteira.join(':');
+
+        }
+    </script>
+
     <script type="text/javascript">
     // Dados
 
@@ -27,16 +58,16 @@
 
     var data = [];
 
-    var rawColumns = '<%= @query_result[:rows] %>';
+    var rawColumns = '<%= @consulta["resultado"][:rows] %>';
     var columns = rawColumns;
     //if (columns[0] == '[' && columns[1] == '[')
     //	columns = columns.substr(1,columns.length - 2);
     columns = columns.replace(/nil/g, 'null');
     var parsedColumns = JSON.parse(keepHtml(columns));
     var row;
-    <% @query_result[:rows].each_with_index do |column_name, rowNumber| %>
+    <% @consulta["resultado"][:rows].each_with_index do |column_name, rowNumber| %>
     row = new Object;
-      <% @query_result[:columns].each_with_index do |column_name, columnNumber| %>
+      <% @consulta["resultado"][:columns].each_with_index do |column_name, columnNumber| %>
       row["<%= column_name %>"] = parsedColumns[<%= rowNumber %>][<%= columnNumber %>];
       <% end %>
     data.push(row);
@@ -44,31 +75,25 @@
 
     var result = new Object;
     result.data = data;
+    result.diaHora = "<%= @consulta['hora'] %>";
     var code = $("#entry-template").html();
     var template = Handlebars.compile(code);
     var content = template(result);
 
     document.getElementById('content').innerHTML = keepHtml(content);
+    mostraData("<%= @consulta['hora'] %>");
 
 
     // Imagens
 
-    var imagesMap = {};
+    var imagens = [];
+    <% @consulta["imagens"].each do |imagem| %>
 
-    <% @images.each  do |image|%>
-
-    imagesMap["<%= image.name %>"] = "<%=image.image%>";
-
-    <% end %>;
-
-    var imgteste = [];
-    <% @teste.each do |imagem| %>
-
-    imgteste["<%= imagem[:nome] %>"] = "<%= imagem[:base64] %>"
+    imagens["<%= imagem[:nome] %>"] = "<%= imagem[:base64] %>"
     <% end %>
       $('img.sapos').each(function(){
 
-            $(this).attr('src', 'data:image/png;base64, ' + imgteste[$(this).attr('id')])
+            $(this).attr('src', 'data:image/png;base64, ' + imagens[$(this).attr('id')])
 
       });
     </script>

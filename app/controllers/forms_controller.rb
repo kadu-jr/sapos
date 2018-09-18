@@ -43,21 +43,25 @@ authorize_resource
   def generate
 	  form = Form.find(params[:id])
     query = Query.find(form.query_id)
-    @query_result = query.execute(get_simulation_params)
-	  @images = form.form_image
-    @teste = []
-    @images.each do |image|
+    query_result = query.execute(get_simulation_params)
+    images = []
+    form.form_image.each do |image|
       hash = {nome: image.name, base64: Base64.encode64(image.image.read).gsub("\n", '')}
-      @teste.push(hash)
+      images.push(hash)
     end
     formTemplate = FormTemplate.find(form.template_id)
-    @template = formTemplate.code
-    #render "generate", layout: false
-    html = render_to_string :action => 'generate', :locals => {:query_result => @query_result, :images => @imagems, :template => @template, :teste => @teste}, layout: false
+    template = formTemplate.code
+    @consulta = {}
+    @consulta["template"] = template
+    @consulta["resultado"] = query_result
+    @consulta["imagens"] = images
+    @consulta["hora"] = Time.now.strftime("%m-%d-%Y %H:%M")
+    render "generate", layout: false
+    #html = render_to_string :action => 'generate', :locals => {:consulta => @consulta}, layout: false
 
-    kit = PDFKit.new(html, page_size: 'A4')
-    pdf = kit.to_pdf
-    send_data(pdf,          filename: 'Relatorio.pdf',          disposition: 'inline',          type: :pdf,          window_status: 'ready')
+    #kit = PDFKit.new(html, page_size: 'A4')
+    #pdf = kit.to_pdf
+    #send_data(pdf,          filename: 'Relatorio.pdf',          disposition: 'inline',          type: :pdf,          window_status: 'ready')
   end
 
   def print

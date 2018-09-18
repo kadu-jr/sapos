@@ -10,8 +10,6 @@ class FormTemplatesController < ApplicationController
     config.list.columns = [:name, :description]
     config.create.label = :create_form_template_label
     config.update.label = :update_form_template_label
-    config.columns[:code].form_ui = :textarea
-    config.columns[:code].options = {:cols => 124, :rows =>30}
     config.actions.exclude :deleted_records
 
   end
