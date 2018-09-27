@@ -16,6 +16,8 @@ authorize_resource
     config.columns[:query].form_ui = :record_select
     config.columns[:template].search_ui = :record_select
     config.columns[:template].form_ui = :record_select
+    config.columns[:form_image].search_ui = :record_select
+    config.columns[:form_image].form_ui = :record_select
     config.update.columns = [:nome, :descricao, :query, :template, :form_image]
     config.list.columns = [:nome, :descricao, :query, :template]
 
@@ -52,9 +54,11 @@ authorize_resource
     formTemplate = FormTemplate.find(form.template_id)
     template = formTemplate.code
     @consulta = {}
+    @consulta["relatorio"] = form
     @consulta["template"] = template
     @consulta["resultado"] = query_result
     @consulta["imagens"] = images
+    @consulta["nome"] = query.name
     @consulta["hora"] = Time.now.strftime("%m-%d-%Y %H:%M")
     render "generate", layout: false
     #html = render_to_string :action => 'generate', :locals => {:consulta => @consulta}, layout: false

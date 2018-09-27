@@ -13,6 +13,12 @@
       <%= @consulta["template"] %>
     </script>
     <script>
+        // Script para contar qual o tamanho de cada coluna para o Bootstrap Grid
+        Handlebars.registerHelper("block", function(number){
+            var num = 12 / number >> 0;
+            return (typeof(num) == "number" && num >= 1)? num : 1
+        });
+
         function mesNome(mes){
 
             switch (mes){
@@ -74,6 +80,9 @@
     <% end %>
 
     var result = new Object;
+    result.nomeRelatorio = "<%= @consulta['relatorio'].nome %>";
+    result.nomeConsulta = "<%= @consulta["nome"] %>";
+    result.colunas = JSON.parse(keepHtml("<%= @consulta["resultado"][:columns] %>"));
     result.data = data;
     result.diaHora = "<%= @consulta['hora'] %>";
     var code = $("#entry-template").html();

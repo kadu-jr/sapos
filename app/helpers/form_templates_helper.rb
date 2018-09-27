@@ -23,33 +23,126 @@ module FormTemplatesHelper
     code_mirror_text_area(:code, "record_code_#{record.id}", "text/x-handlebars-template",
                           options.merge(:rows => 40,
                                         :value => record.code || '<!-- Tabela com todas as linhas retornadas -->
-<div style="max-width: 800px">
-  <h2 style="text-align: center"> Resultado de consulta </h2>
-<table class="table table-striped table-bordered">
-  	<thead>
-	{{#if data}}
-		{{#each data}}
-	  		{{#if @first}}
-				{{#each this}}
-					<td>Coluna {{@index}}</td>
-				{{/each}}
-	 		{{/if}}
-		{{/each}}
-	{{/if}}
-	</thead>
-  	{{#if data}}
-        {{#each data}}
-        <tr>
-                {{#each this}}
-                    <td> {{this}}</td>
-                {{/each}}
-        </tr>
-        {{/each}}
-  	{{else}}
-  		<tr><td>Sem dados retornados</td></tr>
-	{{/if}}
-</table>
-</div>'
+<div class="container geral">
+			<div class="container" style="max-width:  800px;">
+					<!-- CABEÇALHO -->
+					<div class="row" style="padding-bottom:  5px;">
+						<div class="col-sm-8" style="padding-left: 0px;">
+							<div class="painel" style="height:  100px;padding:  0px;margin-bottom: 5px;">
+								<h3>
+									<strong>SAPOS</strong>
+								</h3>
+							</div>
+							<div class="cabecalho" style="height:  40px;">
+								<h3>
+									<strong>{{nomeRelatorio}}</strong>
+								</h3>
+							</div>
+						</div>
+						<div class="col-sm-4 painel" style="height: 145px;">
+							<h3>
+								<strong>UFF</strong>
+							</h3>
+						</div>
+					</div>
+					<!-- MATERIAS -->
+					<div class="row painel">
+						<div class="col-sm-12 dados">
+							{{nomeConsulta}}
+						</div>
+					</div>
+					<div class="row tabela">
+					  {{#each colunas}}
+						<div class="col-sm-{{block ../colunas.length}} dados">
+							{{this}}
+						</div>
+					  {{/each}}
+					</div>
+			  		{{#each data}}
+					<div class="row tabela">
+						{{#each this}}
+						<div class="col-sm-{{block ../../colunas.length}} rodape">
+							{{this}}
+						</div>
+						{{/each}}
+					</div>
+					{{/each}}
+			</div>
+		</div>
+<style>
+
+	.container.geral{
+	color: rgb(51, 51, 153);
+	padding: 0px;
+}
+
+.painel{
+    border-style: solid;
+    border-width: 2px;
+	border-color: rgb(51, 51, 153);
+}
+
+.cabecalho{
+	background-color: rgb(51,51, 153);
+	color: white;
+	padding: 0px;
+}
+.dados{
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.tabela{
+	font-weight: bold;
+	margin-bottom: 5px;
+    border-style: solid;
+    border-width: 2px;
+	border-color: rgb(51, 51, 153);
+}
+.tabela .dados{
+    border-right: solid;
+    border-width: 1px;
+	border-color: rgb(51, 51, 153);
+	height: 100%;
+	background: #e5e5ff;
+	height: 50px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.tabela .rodape{
+    border-right: solid;
+    border-width: 1px;
+	border-color: rgb(51, 51, 153);
+	color: black;
+	height: 20px;
+	background: #e5e5ff;
+}
+
+img {
+    width: inherit
+}
+
+h3, h5{
+	margin-top: 0px;
+	margin-bottom: 0px;
+    text-align: center
+}
+
+.legenda{
+    text-align: left
+}
+
+.direita{
+    text-align: right
+}
+
+table th, table td{
+    text-align: center
+}
+
+</style>
+'
                           ))
   end
 
