@@ -27,7 +27,7 @@ module FormTemplatesHelper
 			<div class="container" style="max-width:  800px;">
 					<!-- CABEÇALHO -->
 					<div class="row" style="padding-bottom:  5px;">
-						<div class="col-sm-8" style="padding-left: 0px;">
+						<div class="col-sm-8" style="display: inline;float: left;width:80%;padding-left: 0px;">
 							<div class="painel" style="height:  100px;padding:  0px;margin-bottom: 5px;">
 								<h3>
 									<strong>SAPOS</strong>
@@ -39,7 +39,7 @@ module FormTemplatesHelper
 								</h3>
 							</div>
 						</div>
-						<div class="col-sm-4 painel" style="height: 145px;">
+						<div class="col-sm-4 painel" style="display: inline;float: right;height: 145px;width: 20%">
 							<h3>
 								<strong>UFF</strong>
 							</h3>
@@ -51,22 +51,28 @@ module FormTemplatesHelper
 							{{nomeConsulta}}
 						</div>
 					</div>
-					<div class="row tabela">
+			  		<table class="row tabela" style="width: 800px">
+					<thead style="width: 100%">
+					<tr class="row" style="width: 100%">
 					  {{#each colunas}}
-						<div class="col-sm-{{block ../colunas.length}} dados">
+						<th class="col-sm-{{block ../colunas.length}} dados"style="">
 							{{this}}
-						</div>
+						</th>
 					  {{/each}}
-					</div>
+					</tr>
+					</thead>
+					<tbody style="width: 100%">
 			  		{{#each data}}
-					<div class="row tabela">
+					<tr class="row tabela" style="width: 100%">
 						{{#each this}}
-						<div class="col-sm-{{block ../../colunas.length}} rodape">
+						<td class="col-sm-{{block ../../colunas.length}} rodape" style="">
 							{{this}}
-						</div>
+						</td>
 						{{/each}}
-					</div>
+					</tr>
 					{{/each}}
+					</tbody>
+				</table>
 			</div>
 		</div>
 <style>

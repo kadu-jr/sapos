@@ -60,12 +60,12 @@ authorize_resource
     @consulta["imagens"] = images
     @consulta["nome"] = query.name
     @consulta["hora"] = Time.now.strftime("%m-%d-%Y %H:%M")
-    render "generate", layout: false
-    #html = render_to_string :action => 'generate', :locals => {:consulta => @consulta}, layout: false
+    #render "generate", layout: false
+    html = render_to_string :action => 'generate', :locals => {:consulta => @consulta}, layout: false
 
-    #kit = PDFKit.new(html, page_size: 'A4')
-    #pdf = kit.to_pdf
-    #send_data(pdf,          filename: 'Relatorio.pdf',          disposition: 'inline',          type: :pdf,          window_status: 'ready')
+    kit = PDFKit.new(html, page_size: 'A4')
+    pdf = kit.to_pdf
+    send_data(pdf,          filename: 'Relatorio.pdf',          disposition: 'inline',          type: :pdf,          window_status: 'ready')
   end
 
   def print
