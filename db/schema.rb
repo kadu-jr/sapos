@@ -239,7 +239,7 @@ ActiveRecord::Schema.define(version: 20180901230532) do
   create_table "form_templates", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "code"
+    t.string "code" , limit: 4294967295
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
