@@ -1,0 +1,4 @@
+INSERT INTO query_params (id, query_id, name, default_value, value_type, created_at, updated_at) VALUES (1, 1, 'nome', 'kadu', 'String', '2018-02-20 23:54:47.047769', '2018-04-07 01:16:18.712592');
+INSERT INTO query_params (id, query_id, name, default_value, value_type, created_at, updated_at) VALUES (2, 2, 'nome_aluno', 'Kadu', 'String', '2018-04-24 02:46:17.723896', '2018-07-24 03:35:09.310815');
+INSERT INTO query_params (id, query_id, name, default_value, value_type, created_at, updated_at) VALUES (3, 4, 'data_consulta', '15/09/2018', 'Date', '2018-09-15 20:45:00.850779', '2018-09-15 20:45:00.850779');
+INSERT INTO query_params (id, query_id, name, default_value, value_type, created_at, updated_at) VALUES (4, 5, 'data_consulta', '2018-09-15', 'Date', '2018-09-15 20:57:45.446327', '2018-09-15 20:57:45.446327');

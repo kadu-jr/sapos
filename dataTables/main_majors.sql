@@ -1,0 +1,2 @@
+INSERT INTO majors (id, name, level_id, institution_id, created_at, updated_at) VALUES (1, 'Sistemas de Informação', 1, 46, '2018-09-14 02:06:05.213791', '2018-09-14 02:06:05.213791');
+INSERT INTO majors (id, name, level_id, institution_id, created_at, updated_at) VALUES (2, 'Microserviços', 3, 61, '2018-09-14 02:08:12.716130', '2018-09-14 02:08:12.716130');

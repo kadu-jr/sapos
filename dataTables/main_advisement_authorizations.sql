@@ -1,0 +1,1 @@
+INSERT INTO advisement_authorizations (id, professor_id, level_id, created_at, updated_at) VALUES (1, 1, 4, '2018-07-13 03:22:51.354083', '2018-07-13 03:22:51.354083');

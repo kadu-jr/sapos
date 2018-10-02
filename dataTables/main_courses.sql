@@ -1,0 +1,2 @@
+INSERT INTO courses (id, name, code, content, credits, course_type_id, created_at, updated_at, workload, available) VALUES (1, ' CALCULO I -A- ', ' GMA00108', 'Calculo. Matematica', 68, 4, '2018-03-27 03:12:45.836059', '2018-03-27 03:12:45.836059', 68, t);
+INSERT INTO courses (id, name, code, content, credits, course_type_id, created_at, updated_at, workload, available) VALUES (2, ' MATEMÁTICA DISCRETA I ', 'GAN00170', 'MateMatica. Provas.', 68, 7, '2018-03-27 03:13:33.429730', '2018-03-27 03:13:33.429730', 68, t);

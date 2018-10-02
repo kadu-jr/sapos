@@ -1,0 +1,1 @@
+INSERT INTO allocations (id, day, room, start_time, end_time, course_class_id, created_at, updated_at) VALUES (1, 'Quarta', '201', 16, 20, 1, '2018-03-27 03:17:32.140642', '2018-03-27 03:17:32.140642');

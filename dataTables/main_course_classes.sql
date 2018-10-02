@@ -1,0 +1,1 @@
+INSERT INTO course_classes (id, name, course_id, professor_id, year, semester, created_at, updated_at) VALUES (1, 'TCC001', 1, 1, 2018, 1, '2018-03-27 03:17:32.103248', '2018-03-27 03:17:32.103248');

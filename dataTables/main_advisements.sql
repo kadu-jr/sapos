@@ -1,0 +1,1 @@
+INSERT INTO advisements (id, professor_id, enrollment_id, main_advisor, created_at, updated_at) VALUES (1, 1, 1, t, '2018-03-27 03:19:41.410216', '2018-03-27 03:19:41.410216');
