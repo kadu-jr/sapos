@@ -44,7 +44,8 @@
                 return "--/--/----";
             var diaInteiro = 	[date.getDate(), mesNome(date.getMonth() + 1), date.getFullYear()]
             var horaInteira = 	[date.getHours(), date.getMinutes()]
-            document.getElementById("diaHora").innerHTML = diaInteiro.join(' de ') + " " + horaInteira.join(':');
+            if (document.getElementById("diaHora") != null)
+                document.getElementById("diaHora").innerHTML = diaInteiro.join(' de ') + " " + horaInteira.join(':');
 
         }
     </script>
