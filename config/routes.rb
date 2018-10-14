@@ -247,6 +247,7 @@ Sapos::Application.routes.draw do
       get 'generate'
       get 'execute'
       post 'pdf'
+      post 'edit'
     end
   end
 

@@ -201,7 +201,6 @@ pt-BR:
         query: "Consulta"
         descricao: "Descrição"
         template: "Template"
-        form_image: "Imagens"
       form_image:
         name: "Nome"
         text: "Descrição"
@@ -441,6 +440,7 @@ pt-BR:
         name: "Título"
         description: "Descrição"
         code: "Código"
+        form_image: "Imagens"
       thesis_defense_committee_participation:
         enrollment: "Matrícula"
         professor: "Professor"

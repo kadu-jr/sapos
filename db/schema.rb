@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180901230532) do
+ActiveRecord::Schema.define(version: 20181014184548) do
 
   create_table "accomplishments", force: :cascade do |t|
     t.integer "enrollment_id"
@@ -236,10 +236,15 @@ ActiveRecord::Schema.define(version: 20180901230532) do
     t.integer "form_image_id", null: false
   end
 
+  create_table "form_images_templates", id: false, force: :cascade do |t|
+    t.integer "form_template_id", null: false
+    t.integer "form_image_id", null: false
+  end
+
   create_table "form_templates", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "code" , limit: 4294967295
+    t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
