@@ -22,14 +22,15 @@ class FormTemplatesController < ApplicationController
   def update
     template = params["record"]
     codigo = template[:code]
-    imagens = nome_imagens(codigo)
-    ids = []
-    imagens.each do |imagem|
-      ids.push(FormImage.find_by_name(imagem).id)
+    if (template[:form_image].size == 1) #Vetor de imagens vazio(Vem um elemento sem nada)
+      imagens = nome_imagens(codigo)
+      ids = []
+      imagens.each do |imagem|
+        ids.push(FormImage.find_by_name(imagem).id)
+      end
+      template[:form_image] = ids
+      params["record"] = template
     end
-    template[:form_image] = ids
-    puts(ids)
-    params["record"] = template
     super()
   end
 
