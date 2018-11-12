@@ -1,0 +1,38 @@
+
+    var code = `<tr class="record  " id="as_form_templates-list-<%= @template[:id] %>-row" data-refresh="<%= @template[:id] %>">
+
+    <td class="name-column sorted  ">
+      <%= @template[:name] %>
+</td>
+    <td class="description-column ">
+      <%= @template[:description] %>
+</td>
+  <td class="actions"><table>
+    <tr>
+      <td class="indicator-container">
+        <img style="visibility:hidden;" id="as_form_templates-record-<%= @template[:id] %>-loading-indicator" alt="loading indicator" class="loading-indicator" src="/assets/active_scaffold/indicator-07b202d8027099d3add8213095a203cecb4938acdebc80f755ef2251a1a5b880.gif" />
+      </td>
+      <td>
+        <a class="edit as_action" data-position="replace" data-action="edit" id="as_form_templates-edit-<%= @template[:id] %>-link" data-remote="true" href="/form_templates/<%= @template[:id] %>/edit?utf8=%E2%9C%93">
+          <i title='Editar' class='fa fa-pencil'></i>
+        </a>
+      </td>
+      <td>
+        <a class="destroy as_action" data-confirm="Tem certeza que deseja excluir?" data-action="destroy" id="as_form_templates-destroy-<%= @template[:id] %>-link" data-remote="true" rel="nofollow" data-method="delete" href="/form_templates/<%= @template[:id] %>?destroy_action=true&amp;utf8=%E2%9C%93">
+          <i title='Excluir' class='fa fa-trash-o'></i>
+        </a>
+      </td>
+      <td>
+        <a class="show as_action" data-position="replace" data-action="show" id="as_form_templates-show-<%= @template[:id] %>-link" data-remote="true" href="/form_templates/<%= @template[:id] %>?utf8=%E2%9C%93">
+          <i title='Visualizar' class='fa fa-eye'></i>
+        </a>
+      </td>
+    </tr>
+  </table></td>
+</tr>
+`;
+    var action_link = ActiveScaffold.find_action_link('as_form_templates-update-<%= @template[:id] %>-form');
+    if (action_link) action_link.update_flash_messages('');
+    if (action_link) action_link.close(code);
+
+

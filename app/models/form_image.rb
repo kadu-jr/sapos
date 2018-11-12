@@ -2,14 +2,11 @@
 # Copyright (c) Universidade Federal Fluminense (UFF).
 # This file is part of SAPOS. Please, consult the license terms in the LICENSE file
 
-class FormImage < ApplicationRecord
-  has_paper_trail
+class FormImage < RemoteDb
   has_and_belongs_to_many  :form_templates
 
-  validates :text, :presence => true
-
   mount_uploader :image, FormImageUploader
-
+  #has_one_attached :image
   def initialize_dup(other)
     super
     attrib = other.attributes.except("id", "created_at", "updated_at")
@@ -22,6 +19,12 @@ class FormImage < ApplicationRecord
 
   def to_label
     "#{name}"
+  end
+
+
+  def self.find(*args)
+    puts("Achando")
+    super
   end
 
 end

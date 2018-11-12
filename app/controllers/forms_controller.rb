@@ -1,6 +1,7 @@
 class FormsController < ApplicationController
   require 'base64'
-authorize_resource
+  require 'rest-client'
+  skip_authorization_check
 
 
   active_scaffold :form do |config|
@@ -34,6 +35,27 @@ authorize_resource
   end
   record_select :per_page => 10, :search_on => [:nome], :order_by => 'nome', :full_text_search => true
 
+  def create
+    rec = params[:record]
+    form = {nome: rec[:nome], descricao: rec[:descricao], query: rec[:query], template: rec[:template]}
+    response = RestClient.post REMOTE_URL + "forms", form.to_json, {content_type: :json}
+    puts(response.body)
+    @form = Form.find(Integer(response.body))
+    render  layout: false
+  end
+
+  def update
+    rec = params[:record]
+    form = {nome: rec[:nome], descricao: rec[:descricao], query: rec[:query], template: rec[:template]}
+    response = RestClient.put REMOTE_URL + "forms/" + params[:id], form.to_json, {content_type: :json}
+    @form = Form.find(params[:id])
+  end
+
+  def destroy
+    response = RestClient.delete REMOTE_URL + "forms/" + params[:id]
+    puts(response.body)
+  end
+
   def consult
     @form = Form.find(params[:id])
     @query = Query.find(@form.query_id)
@@ -46,7 +68,7 @@ authorize_resource
     query_result = query.execute(get_simulation_params)
     images = []
     form.template.form_image.each do |image|
-      hash = {nome: image.name, base64: Base64.encode64(image.image.read).gsub("\n", '')}
+      hash = {nome: image.name, base64: image.imagebase}
       images.push(hash)
     end
     formTemplate = form.template

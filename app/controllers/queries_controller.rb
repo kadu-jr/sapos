@@ -33,6 +33,20 @@ class QueriesController < ApplicationController
     render :action => 'execute'
   end
 
+  def create
+    rec = params[:record]
+    param = []
+    rec[:params].each do |key, value|
+      if key.to_s != "0"
+        param.push({name: value[:name], value_type: value[:value_type], default_value: value[:default_value]})
+      end
+    end
+    query = {name: rec[:name], description: rec[:description], sql: rec[:sql], params: param}
+    response = RestClient.post REMOTE_URL + "queries", query.to_json, {content_type: :json}
+    puts(response.body)
+    @query = Query.find(Integer(response.body))
+    render  layout: false
+  end
 
   private
   def get_simulation_params

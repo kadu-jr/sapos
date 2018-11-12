@@ -18,9 +18,17 @@ class FormTemplatesController < ApplicationController
   record_select :per_page => 10,:search_on => [:name], :order_by => 'name', :full_text_search => true
 
 
+  def create
+    rec = params[:record]
+    template = {name: rec[:name], description: rec[:description], code: rec[:code], form_image: rec[:form_image]}
+    response = RestClient.post "localhost:3001/" + "form_templates", template.to_json, {content_type: :json}
+    puts(response.body)
+    @template = FormTemplate.find(Integer(response.body))
+    render  layout: false
+  end
 
   def update
-    template = params["record"]
+    template = params[:record]
     codigo = template[:code]
     if (template[:form_image].size == 1) #Vetor de imagens vazio(Vem um elemento sem nada)
       imagens = nome_imagens(codigo)
@@ -29,9 +37,16 @@ class FormTemplatesController < ApplicationController
         ids.push(FormImage.find_by_name(imagem).id)
       end
       template[:form_image] = ids
-      params["record"] = template
+
     end
-    super()
+    form_template = {name: template[:name], description: template[:description], code: template[:code], form_image: template[:form_image]}
+    response = RestClient.put "localhost:3001/" + "form_templates/" + params[:id], form_template.to_json, {content_type: :json}
+    @template = FormTemplate.find(params[:id])
+  end
+
+  def destroy
+    response = RestClient.delete "localhost:3001/" + "form_templates/" + params[:id]
+    puts(response.body)
   end
 
   private

@@ -1,0 +1,41 @@
+try {
+var code = `<tr class="record  " id="as_queries-list-<%= @query[:id] %>-row" data-refresh="<%= @query[:id] %>">
+
+    <td class="name-column  ">
+      <%= @query[:name] %>
+</td>
+    <td class="description-column ">
+      <%= @query[:description] %>
+</td>
+    <td class="notifications-column  empty ">
+      <a class="index as_action toggle" data-position="after" data-action="index" data-cancel-refresh="true" id="as_queries-__notifications-index-notifications-<%= @query[:id] %>-link" data-remote="true" href="/notifications?association=notifications&amp;parent_scaffold=queries&amp;query_id=<%= @query[:id] %>&amp;utf8=%E2%9C%93">-</a>
+</td>
+  <td class="actions"><table>
+    <tr>
+      <td class="indicator-container">
+        <img style="visibility:hidden;" id="as_queries-record-<%= @query[:id] %>-loading-indicator" alt="loading indicator" class="loading-indicator" src="/assets/active_scaffold/indicator-07b202d8027099d3add8213095a203cecb4938acdebc80f755ef2251a1a5b880.gif" />
+      </td>
+      <td>
+        <a class="execute as_action" data-position="after" data-action="execute" id="as_queries-execute-<%= @query[:id] %>-link" data-remote="true" href="/queries/<%= @query[:id] %>/execute?utf8=%E2%9C%93"><i title='Executar' class='fa fa-table'></i></a>
+      </td>
+      <td>
+        <a class="edit as_action" data-position="replace" data-action="edit" id="as_queries-edit-<%= @query[:id] %>-link" data-remote="true" href="/queries/<%= @query[:id] %>/edit?utf8=%E2%9C%93"><i title='Editar' class='fa fa-pencil'></i></a>
+      </td>
+      <td>
+        <a class="destroy as_action" data-confirm="Tem certeza que deseja excluir?" data-action="destroy" id="as_queries-destroy-<%= @query[:id] %>-link" data-remote="true" rel="nofollow" data-method="delete" href="/queries/<%= @query[:id] %>?destroy_action=true&amp;utf8=%E2%9C%93"><i title='Excluir' class='fa fa-trash-o'></i></a>
+      </td>
+      <td>
+        <a class="show as_action" data-position="replace" data-action="show" id="as_queries-show-<%= @query[:id] %>-link" data-remote="true" href="/queries/<%= @query[:id] %>?utf8=%E2%9C%93"><i title='Visualizar' class='fa fa-eye'></i></a>
+      </td>
+    </tr>
+  </table></td>
+</tr>
+`
+var action_link;
+action_link = ActiveScaffold.find_action_link('as_queries-create--form');
+if (action_link) action_link.update_flash_messages('');
+ActiveScaffold.create_record_row(action_link ? action_link.scaffold() : 'as_queries-active-scaffold', code, {"insert_at":"top"});
+
+
+  if (action_link) action_link.close();
+  } catch (e) { alert('RJS error:\n\n' + e.toString());}

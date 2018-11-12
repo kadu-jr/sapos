@@ -1,4 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead
+  # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181014184548) do
+ActiveRecord::Schema.define(version: 2018_11_01_234352) do
 
   create_table "accomplishments", force: :cascade do |t|
     t.integer "enrollment_id"
@@ -21,6 +21,27 @@ ActiveRecord::Schema.define(version: 20181014184548) do
     t.datetime "updated_at", null: false
     t.index ["enrollment_id"], name: "index_accomplishments_on_enrollment_id"
     t.index ["phase_id"], name: "index_accomplishments_on_phase_id"
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
   create_table "advisement_authorizations", force: :cascade do |t|
@@ -228,6 +249,8 @@ ActiveRecord::Schema.define(version: 20181014184548) do
     t.integer "form_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "imagebase"
+    t.text "img"
     t.index ["form_id"], name: "form_images_form_id_index"
   end
 
@@ -250,7 +273,7 @@ ActiveRecord::Schema.define(version: 20181014184548) do
   end
 
   create_table "forms", force: :cascade do |t|
-    t.string "nome", limit: 32, null: false
+    t.string "nome", limit: 100, null: false
     t.integer "query_id"
     t.text "descricao"
     t.datetime "created_at"
@@ -410,6 +433,11 @@ ActiveRecord::Schema.define(version: 20181014184548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["query_id"], name: "index_query_params_on_query_id"
+  end
+
+  create_table "remote_dbs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "report_configurations", force: :cascade do |t|

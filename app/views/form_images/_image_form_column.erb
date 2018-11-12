@@ -1,0 +1,19 @@
+<dl>
+  <dt>
+    <label for="record_image_">Imagem</label>
+  </dt>
+  <dd>
+    <%if  record.id == nil %>
+      <input name="record[image]<%= record.name %>" class="image-input text-input" id="record_image_" autocomplete="off" type="file">
+    <%else %>
+      <div class="carrierwave_controls">
+        <div>
+          <a target="_blank" href="form_images/<%= record.id %>/logo?hash=80bf9ac520217b95adae31e7780e9d2f.png"><%= record.image %></a>
+          |
+          <input name="record[image_cache]" id="record_image_<%= record.id %>_cache" type="hidden"><input value="false" class="remove_file" type="hidden" name="record[remove_image]" id="record_remove_image"><a href="#" onclick="jQuery(this).prev().val('true'); jQuery(this).parent().hide().next().show(); return false;">Remove File</a></div><div style="display: none"><input name="record[image]" class="image-input text-input" id="record_image_18" autocomplete="off" onchange="jQuery(this).parents('div.carrierwave_controls').find('input.remove_file').val('false'); return false;" type="file"></div></div>
+
+
+
+    <%end %>
+  </dd>
+</dl>

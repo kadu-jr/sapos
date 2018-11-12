@@ -1,7 +1,7 @@
 # Copyright (c) Universidade Federal Fluminense (UFF).
 # This file is part of SAPOS. Please, consult the license terms in the LICENSE file.
 
-class QueryParam < ApplicationRecord
+class QueryParam < RemoteDb
   belongs_to :query
   has_many :notification_params
 

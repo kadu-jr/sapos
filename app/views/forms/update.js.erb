@@ -1,0 +1,48 @@
+var code = `<tr class="record  " id="as_forms-list-<%= @form[:id] %>-row" data-refresh="<%= @form[:id] %>">
+
+    <td class="nome-column  ">
+      <%= @form[:nome] %>
+</td>
+    <td class="descricao-column  ">
+      <%= @form[:descricao] %>
+</td>
+    <td class="query-column  ">
+      <a class="query edit as_action" data-position="after" data-action="edit" id="as_forms-__queries-edit-query-<%= @form.query[:id] %>-<%= @form[:id] %>-link" data-remote="true" href="/queries/<%= @form.query[:id] %>/edit?association=query&amp;form_id=<%= @form[:id] %>&amp;parent_scaffold=forms&amp;utf8=%E2%9C%93"><%= @form.query[:name] %></a>
+</td>
+    <td class="template-column  ">
+      <a class="template edit as_action" data-position="after" data-action="edit" id="as_forms-__form_templates-edit-template-<%= @form.template[:id] %>-<%= @form[:id] %>-link" data-remote="true" href="/form_templates/<%= @form.template[:id] %>/edit?association=template&amp;form_id=<%= @form[:id] %>&amp;parent_scaffold=forms&amp;utf8=%E2%9C%93"><%= @form.template[:name] %></a>
+</td>
+  <td class="actions"><table>
+    <tr>
+      <td class="indicator-container">
+        <img style="visibility:hidden;" id="as_forms-record-4-loading-indicator" alt="loading indicator" class="loading-indicator" src="/assets/active_scaffold/indicator-07b202d8027099d3add8213095a203cecb4938acdebc80f755ef2251a1a5b880.gif" />
+      </td>
+      <td>
+        <a class="consult as_action" data-position="after" data-action="consult" id="as_forms-consult-<%= @form[:id] %>-link" data-remote="true" href="/forms/<%= @form[:id] %>/consult?utf8=%E2%9C%93">
+          <i title='Executar' class='fa fa-table'></i>
+        </a>
+      </td>
+      <td>
+        <a class="edit as_action" data-position="replace" data-action="edit" id="as_forms-edit-<%= @form[:id] %>-link" data-remote="true" href="/forms/<%= @form[:id] %>/edit?utf8=%E2%9C%93">
+          <i title='Editar' class='fa fa-pencil'></i>
+        </a>
+      </td>
+      <td>
+        <a class="destroy as_action" data-confirm="Tem certeza que deseja excluir?" data-action="destroy" id="as_forms-destroy-<%= @form[:id] %>-link" data-remote="true" rel="nofollow" data-method="delete" href="/forms/<%= @form[:id] %>?destroy_action=true&amp;utf8=%E2%9C%93">
+          <i title='Excluir' class='fa fa-trash-o'></i>
+        </a>
+      </td>
+      <td>
+        <a class="show as_action" data-position="replace" data-action="show" id="as_forms-show-<%= @form[:id] %>-link" data-remote="true" href="/forms/<%= @form[:id] %>?utf8=%E2%9C%93">
+          <i title='Visualizar' class='fa fa-eye'></i>
+        </a>
+      </td>
+    </tr>
+  </table></td>
+</tr>
+`
+var action_link = ActiveScaffold.find_action_link('as_forms-update-<%= @form[:id] %>-form');
+if (action_link) action_link.update_flash_messages('');
+if (action_link) action_link.close(code);
+
+

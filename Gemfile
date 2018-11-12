@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.1.4'
+gem 'rails', '5.2.1'
 
 gem 'rubyzip', '>=1.2.1'
 
@@ -27,7 +27,7 @@ gem 'coffee-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '>= 4.0.4'
 gem 'jquery-ui-rails'
-
+gem 'bootsnap'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 
@@ -76,6 +76,7 @@ gem 'carrierwave-activerecord', :git => 'https://github.com/gems-uff/carrierwave
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'mysql2'
   gem 'awesome_print'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
@@ -85,11 +86,11 @@ group :development, :test do
   gem 'spring'
   gem 'byebug'
   gem 'unicorn'
+  gem 'listen'
 end
 
 group :production, :staging do
   gem 'mysql2'
-  gem 'exception_notification', '2.6.1', :require => 'exception_notifier'
 end
 
 gem 'json'
@@ -109,7 +110,7 @@ gem 'wkhtmltopdf-binary'
 # HTML to PDF Converter. Uses wkhtmltopdf
  gem 'pdfkit'
 
-# gem 'wicked_pdf'
+gem 'rest-client', '~> 2.0', '>= 2.0.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
