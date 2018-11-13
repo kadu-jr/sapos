@@ -1,7 +1,7 @@
 # Copyright (c) Universidade Federal Fluminense (UFF).
 # This file is part of SAPOS. Please, consult the license terms in the LICENSE file.
 
-class Query < ApplicationRecord
+class Query < RemoteDb
 
   has_many :notifications, inverse_of: :query
   has_many :params, class_name: 'QueryParam', dependent: :destroy
