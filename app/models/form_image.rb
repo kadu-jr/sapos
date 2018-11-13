@@ -2,7 +2,7 @@
 # Copyright (c) Universidade Federal Fluminense (UFF).
 # This file is part of SAPOS. Please, consult the license terms in the LICENSE file
 
-class FormImage < RemoteDb
+class FormImage < ApplicationRecord
   has_and_belongs_to_many  :form_templates
 
   mount_uploader :image, FormImageUploader

@@ -1,4 +1,4 @@
-class Form < RemoteDb
+class Form < ApplicationRecord
 belongs_to :query
 belongs_to :template, class_name: "FormTemplate"
 
