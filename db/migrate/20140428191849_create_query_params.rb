@@ -12,6 +12,5 @@ class CreateQueryParams < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :query_params, :query_id
   end
 end

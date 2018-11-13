@@ -10,9 +10,7 @@ class CreateAdvisements < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    
-    add_index :advisements, :professor_id
-    add_index :advisements, :enrollment_id
+
   end
 
   def self.down
