@@ -43,7 +43,7 @@ class FormImagesController < ApplicationController
       image[:imagebase] = Base64.encode64(rec[:image].read).gsub("\n", '')
     end
     response = RestClient.post "localhost:3001/" + "form_images", image.to_json, {content_type: :json}
-    puts(response.body)
+    #puts(response.body)
     @image = FormImage.find(Integer(response.body))
     render  layout: false
   end
@@ -60,14 +60,14 @@ class FormImagesController < ApplicationController
     end
     response = RestClient.put "localhost:3001/" + "form_images/" + params[:id], image.to_json, {content_type: :json}
     #@image = JSON.parse(response.body, object_class: FormImage)
-    puts(params[:id])
+    #puts(params[:id])
     @image = FormImage.find(params[:id])
     render  layout: false
   end
 
   def destroy
     response = RestClient.delete REMOTE_URL + "form_images/" + params[:id]
-    puts(response.body)
+    #puts(response.body)
   end
 
   private

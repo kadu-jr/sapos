@@ -21,10 +21,4 @@ class FormImage < RemoteDb
     "#{name}"
   end
 
-
-  def self.find(*args)
-    puts("Achando")
-    super
-  end
-
 end

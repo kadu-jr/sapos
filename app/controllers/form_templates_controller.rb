@@ -22,7 +22,7 @@ class FormTemplatesController < ApplicationController
     rec = params[:record]
     template = {name: rec[:name], description: rec[:description], code: rec[:code], form_image: rec[:form_image]}
     response = RestClient.post "localhost:3001/" + "form_templates", template.to_json, {content_type: :json}
-    puts(response.body)
+    #puts(response.body)
     @template = FormTemplate.find(Integer(response.body))
     render  layout: false
   end
@@ -46,7 +46,7 @@ class FormTemplatesController < ApplicationController
 
   def destroy
     response = RestClient.delete "localhost:3001/" + "form_templates/" + params[:id]
-    puts(response.body)
+    #puts(response.body)
   end
 
   private

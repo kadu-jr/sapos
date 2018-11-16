@@ -43,7 +43,7 @@ class QueriesController < ApplicationController
     end
     query = {name: rec[:name], description: rec[:description], sql: rec[:sql], params: param}
     response = RestClient.post REMOTE_URL + "queries", query.to_json, {content_type: :json}
-    puts(response.body)
+    #puts(response.body)
     @query = Query.find(Integer(response.body))
     render  layout: false
   end

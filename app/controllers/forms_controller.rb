@@ -39,7 +39,7 @@ class FormsController < ApplicationController
     rec = params[:record]
     form = {nome: rec[:nome], descricao: rec[:descricao], query: rec[:query], template: rec[:template]}
     response = RestClient.post REMOTE_URL + "forms", form.to_json, {content_type: :json}
-    puts(response.body)
+    #puts(response.body)
     @form = Form.find(Integer(response.body))
     render  layout: false
   end
@@ -53,7 +53,7 @@ class FormsController < ApplicationController
 
   def destroy
     response = RestClient.delete REMOTE_URL + "forms/" + params[:id]
-    puts(response.body)
+    #puts(response.body)
   end
 
   def consult
