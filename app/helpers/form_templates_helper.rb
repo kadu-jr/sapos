@@ -22,14 +22,15 @@ module FormTemplatesHelper
   def html_form_column(record, options)
     code_mirror_text_area(:code, "record_code_#{record.id}", "text/x-handlebars-template",
                           options.merge(:rows => 40,
-                                        :value => record.code || '<!-- Tabela com todas as linhas retornadas -->
+                                        :value => record.code || '
+<!-- Tabela com todas as linhas retornadas -->
 <div class="container geral">
 			<div class="container" style="max-width:  800px;">
 					<!-- CABEÇALHO -->
 					<div class="row" style="padding-bottom:  5px;">
 						<div class="col-sm-8" style="display: inline;float: left;width:80%;padding-left: 0px;">
 							<div class="painel" style="height:  100px;padding:  0px;margin-bottom: 5px;">
-								<h3>
+								<h3 style="padding-top: 5%;">
 									<strong>SAPOS</strong>
 								</h3>
 							</div>
@@ -40,22 +41,17 @@ module FormTemplatesHelper
 							</div>
 						</div>
 						<div class="col-sm-4 painel" style="display: inline;float: right;height: 145px;width: 20%">
-							<h3>
+							<h3 style="padding-top: 40%;">
 								<strong>UFF</strong>
 							</h3>
 						</div>
 					</div>
 					<!-- MATERIAS -->
-					<div class="row painel">
-						<div class="col-sm-12 dados">
-							{{nomeConsulta}}
-						</div>
-					</div>
 			  		<table class="row tabela" style="width: 800px">
 					<thead style="width: 100%">
 					<tr class="row" style="width: 100%">
 					  {{#each colunas}}
-						<th class="col-sm-{{block ../colunas.length}} dados"style="">
+						<th class="col-sm-{{block ../colunas.length}} titulo">
 							{{this}}
 						</th>
 					  {{/each}}
@@ -65,7 +61,7 @@ module FormTemplatesHelper
 			  		{{#each data}}
 					<tr class="row tabela" style="width: 100%">
 						{{#each this}}
-						<td class="col-sm-{{block ../../colunas.length}} rodape" style="">
+						<td class="col-sm-{{block ../../colunas.length}} dados" style="">
 							{{this}}
 						</td>
 						{{/each}}
@@ -93,22 +89,18 @@ module FormTemplatesHelper
 	color: white;
 	padding: 0px;
 }
-.dados{
-	font-weight: bold;
-	margin-bottom: 5px;
-}
 
 .tabela{
 	font-weight: bold;
 	margin-bottom: 5px;
-    border-style: solid;
-    border-width: 2px;
+    //border-style: solid;
+    //border-width: 1px;
 	border-color: rgb(51, 51, 153);
 }
-.tabela .dados{
-    border-right: solid;
-    border-width: 1px;
-	border-color: rgb(51, 51, 153);
+.titulo{
+  	border-style: solid;
+  	border-width: 1px;
+	border-color: black;
 	height: 100%;
 	background: #e5e5ff;
 	height: 50px;
@@ -116,13 +108,15 @@ module FormTemplatesHelper
 	margin: 0px;
 }
 
-.tabela .rodape{
-    border-right: solid;
-    border-width: 1px;
-	border-color: rgb(51, 51, 153);
-	color: black;
-	height: 20px;
+.dados{
+  	border-style: solid;
+  	border-width: 1px;
+	border-color: black;
+	height: 100%;
 	background: #e5e5ff;
+	padding: 0px;
+	margin: 0px;
+  	font-weight: normal;
 }
 
 img {
