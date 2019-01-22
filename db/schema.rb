@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181014184548) do
+ActiveRecord::Schema.define(version: 20190122004543) do
 
   create_table "accomplishments", force: :cascade do |t|
     t.integer "enrollment_id"
@@ -244,17 +244,18 @@ ActiveRecord::Schema.define(version: 20181014184548) do
   create_table "form_templates", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "code"
+    t.text "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "forms", force: :cascade do |t|
-    t.string "nome", limit: 32, null: false
+    t.string "nome", limit: 100, null: false
     t.integer "query_id"
     t.text "descricao"
     t.datetime "created_at"
     t.integer "template_id"
+    t.boolean "group_query"
     t.index ["query_id"], name: "index_forms_on_query_id"
     t.index ["template_id"], name: "forms_template_id_index"
   end

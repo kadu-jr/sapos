@@ -14,6 +14,13 @@
       <%= @consulta["template"] %>
     </script>
     <script>
+        // Script para aumentar o tamanho da variavel em 1
+        Handlebars.registerHelper("inc", function(value, options)
+        {
+            return parseInt(value) + 1;
+        });
+
+
         // Script para contar qual o tamanho de cada coluna para o Bootstrap Grid
         Handlebars.registerHelper("block", function(number){
             var num = 12 / number >> 0;
@@ -85,6 +92,17 @@
     result.nomeRelatorio = "<%= @consulta['relatorio'].nome %>";
     result.nomeConsulta = "<%= @consulta["nome"] %>";
     result.colunas = JSON.parse(keepHtml("<%= @consulta["resultado"][:columns] %>"));
+    if (<%= @consulta['relatorio'].group_query %>){
+        var groups = [];
+        data.forEach((d) => {
+            var g = groups.filter((v) => v[0].Nome == d.Nome);
+            if (g.length == 0)
+                groups.push([d]);
+            else
+                g[0].push(d);
+        });
+        data = groups;
+    }
     result.data = data;
     result.diaHora = "<%= @consulta['hora'] %>";
     var code = $("#entry-template").html();

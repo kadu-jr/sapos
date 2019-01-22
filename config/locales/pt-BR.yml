@@ -201,6 +201,7 @@ pt-BR:
         query: "Consulta"
         descricao: "Descrição"
         template: "Template"
+        group_query: "Agrupar Resultado"
       form_image:
         name: "Nome"
         text: "Descrição"

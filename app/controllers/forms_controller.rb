@@ -16,7 +16,7 @@ authorize_resource
     config.columns[:query].form_ui = :record_select
     config.columns[:template].search_ui = :record_select
     config.columns[:template].form_ui = :record_select
-    config.update.columns = [:nome, :descricao, :query, :template]
+    config.update.columns = [:nome, :descricao, :query, :template, :group_query]
     config.list.columns = [:nome, :descricao, :query, :template]
 
     config.columns[:descricao].form_ui = :textarea
@@ -26,7 +26,7 @@ authorize_resource
 
     #config.columns[:params].allow_add_existing = false
     #config.columns[:params].clear_link
-    config.create.columns = [:nome, :descricao, :query, :template]
+    config.create.columns = [:nome, :descricao, :query, :template, :group_query]
     # config.show.columns = form_columns + [:next_execution]
     # config.list.columns = [:title, :frequency, :notification_offset, :query_offset, :next_execution]
 
