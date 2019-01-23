@@ -93,9 +93,10 @@
     result.nomeConsulta = "<%= @consulta["nome"] %>";
     result.colunas = JSON.parse(keepHtml("<%= @consulta["resultado"][:columns] %>"));
     if (<%= @consulta['relatorio'].group_query %>){
+        var column = result.colunas[0];
         var groups = [];
         data.forEach(function(d)  {;
-            var g = groups.filter(function(v) {return v[0].Nome == d.Nome});
+            var g = groups.filter(function(v) {return v[0][column] == d[column]});
             if (g.length == 0)
                 groups.push([d]);
             else
