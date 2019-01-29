@@ -50,10 +50,11 @@
             console.log(date);
             if (date == "Invalid Date")
                 return "--/--/----";
-            var diaInteiro = 	[date.getDate(), mesNome(date.getMonth() + 1), date.getFullYear()]
-            var horaInteira = 	[date.getHours(), date.getMinutes()]
-            if (document.getElementById("diaHora") != null)
-                document.getElementById("diaHora").innerHTML = diaInteiro.join(' de ') + " " + horaInteira.join(':');
+            var diaInteiro = 	[date.getDate(), mesNome(date.getMonth() + 1), date.getFullYear()];
+            var horaInteira = 	[date.getHours(), date.getMinutes()];
+            var doms = document.getElementsByClassName("diaHora");
+            for (var i=0; i < doms.length; i++)
+                document.getElementsByClassName("diaHora")[i].innerText = diaInteiro.join(' de ') + " " + horaInteira.join(':');
 
         }
     </script>

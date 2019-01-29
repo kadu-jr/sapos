@@ -6,8 +6,6 @@ class FormImage < ApplicationRecord
   has_paper_trail
   has_and_belongs_to_many  :form_templates
 
-  validates :text, :presence => true
-
   mount_uploader :image, FormImageUploader
 
   def initialize_dup(other)
