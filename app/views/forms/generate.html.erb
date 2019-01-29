@@ -44,9 +44,9 @@
                 case 12: return 'dezembro';
             }
         }
-        function mostraData(data){
+        function mostraData(){
 
-            var date = new Date(data);
+            var date = new Date();
             console.log(date);
             if (date == "Invalid Date")
                 return "--/--/----";
@@ -54,7 +54,7 @@
             var horaInteira = 	[date.getHours(), date.getMinutes()];
             var doms = document.getElementsByClassName("diaHora");
             for (var i=0; i < doms.length; i++)
-                document.getElementsByClassName("diaHora")[i].innerText = diaInteiro.join(' de ') + " " + horaInteira.join(':');
+                document.getElementsByClassName("diaHora")[i].innerHTML = diaInteiro.join(' de ') + " " + horaInteira.join(':');
 
         }
     </script>
