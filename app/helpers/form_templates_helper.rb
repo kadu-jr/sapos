@@ -46,7 +46,7 @@ module FormTemplatesHelper
 							</h3>
 						</div>
 					</div>
-					<!-- MATERIAS -->
+					<!-- HEADER TABELA -->
 			  		<table class="row tabela" style="width: 800px">
 					<thead style="width: 100%">
 					<tr class="row" style="width: 100%">
@@ -57,6 +57,7 @@ module FormTemplatesHelper
 					  {{/each}}
 					</tr>
 					</thead>
+					<!-- CONTEUDO -->
 					<tbody style="width: 100%">
 			  		{{#each data}}
 					<tr class="row tabela" style="width: 100%">
@@ -71,6 +72,7 @@ module FormTemplatesHelper
 				</table>
 			</div>
 		</div>
+CSS
 <style>
 
 	.container.geral{

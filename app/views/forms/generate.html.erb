@@ -76,8 +76,6 @@
 
     var rawColumns = '<%= @consulta["resultado"][:rows] %>';
     var columns = rawColumns;
-    //if (columns[0] == '[' && columns[1] == '[')
-    //	columns = columns.substr(1,columns.length - 2);
     columns = columns.replace(/nil/g, 'null');
     var parsedColumns = JSON.parse(keepHtml(columns));
     var row;

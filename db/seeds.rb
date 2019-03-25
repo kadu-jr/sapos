@@ -10232,3 +10232,310 @@ City.create(:name =>"Tupiratins",:state =>State.find_by_code("TO"))
 City.create(:name =>"Venus",:state =>State.find_by_code("TO"))
 City.create(:name =>"Wanderlandia",:state =>State.find_by_code("TO"))
 City.create(:name =>"Xambioa",:state =>State.find_by_code("TO"))
+
+FormTemplate.create(:name =>"Tabela Padrao", :description=>"Mostra o resultado da consulta em formato de tabela.", :code => %Q{
+<!-- Tabela com todas as linhas retornadas -->
+<div class="container geral">
+			<div class="container" style="max-width:  800px;">
+					<!-- CABEÇALHO -->
+					<div class="row" style="padding-bottom:  5px;">
+						<div class="col-sm-8" style="display: inline;float: left;width:80%;padding-left: 0px;">
+							<div class="painel" style="height:  100px;padding:  0px;margin-bottom: 5px;">
+								<h3 style="padding-top: 5%;">
+									<strong>SAPOS</strong>
+								</h3>
+							</div>
+							<div class="cabecalho" style="height:  40px;">
+								<h3>
+									<strong>{{nomeRelatorio}}</strong>
+								</h3>
+							</div>
+						</div>
+						<div class="col-sm-4 painel" style="display: inline;float: right;height: 145px;width: 20%">
+							<h3 style="padding-top: 40%;">
+								<strong>UFF</strong>
+							</h3>
+						</div>
+					</div>
+					<!-- HEADER TABELA -->
+			  		<table class="row tabela" style="width: 800px">
+					<thead style="width: 100%">
+					<tr class="row" style="width: 100%">
+					  {{#each colunas}}
+						<th class="col-sm-{{block ../colunas.length}} titulo">
+							{{this}}
+						</th>
+					  {{/each}}
+					</tr>
+					</thead>
+					<!-- CONTEUDO -->
+					<tbody style="width: 100%">
+			  		{{#each data}}
+					<tr class="row tabela" style="width: 100%">
+						{{#each this}}
+						<td class="col-sm-{{block ../../colunas.length}} dados" style="">
+							{{this}}
+						</td>
+						{{/each}}
+					</tr>
+					{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+<!-- CSS -->
+<style>
+
+	.container.geral{
+	color: rgb(51, 51, 153);
+	padding: 0px;
+}
+
+.painel{
+    border-style: solid;
+    border-width: 2px;
+	border-color: rgb(51, 51, 153);
+}
+
+.cabecalho{
+	background-color: rgb(51,51, 153);
+	color: white;
+	padding: 0px;
+}
+
+.tabela{
+	font-weight: bold;
+	margin-bottom: 5px;
+    //border-style: solid;
+    //border-width: 1px;
+	border-color: rgb(51, 51, 153);
+}
+.titulo{
+  	border-style: solid;
+  	border-width: 1px;
+	border-color: black;
+	height: 100%;
+	background: #e5e5ff;
+	height: 50px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.dados{
+  	border-style: solid;
+  	border-width: 1px;
+	border-color: black;
+	height: 100%;
+	background: #e5e5ff;
+	padding: 0px;
+	margin: 0px;
+  	font-weight: normal;
+}
+
+img {
+    width: inherit
+}
+
+h3, h5{
+	margin-top: 0px;
+	margin-bottom: 0px;
+    text-align: center
+}
+
+.legenda{
+    text-align: left
+}
+
+.direita{
+    text-align: right
+}
+
+table th, table td{
+    text-align: center
+}
+
+</style>})
+FormTemplate.create(:name =>"Declaracao", :description =>'Declaracao de Alunos Avulsos. Utiliza a logo do IC no cabecalho, nome "ic-logo".', :code =>%Q{
+   <div class="container painel">
+  		{{#each data}}
+  		<div class="container pagina">
+            <div class="container">
+                <div class="row cabecalho" >
+                    <div class="col-sm-4" style="display: inline;">
+                        <img id="ic-logo" class="sapos" style="display: inline;float: left;">
+                    </div>
+                    <div class="col-sm-8" style="display: inline;">
+                        <div class="texto" style="display: inline;">
+                            <p>
+                                <strong>Universidade Federal Fluminense</strong>
+                            </p>
+                            <hr class="separadorCabecalho">
+                            <p>
+                                Instituto de Computação
+                                <br>
+                                Coordenacao de Pós-Graduação em Computação
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="titulo">
+                            <strong>DECLARAÇÃO</strong>
+                        </div>
+                    </div>
+                </div>
+			    <div class="row">
+                    <div class="col-sm-12">
+                        <div class="paragrafo">
+                            <p><BR/></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                            <p class="paragrafo" align="justify">
+                                Declaro, para os devidos fins, que {{this.0.name}} cursou como Aluno Avulso as seguintes disciplinas do Programa de Pós-Graduação em Computação, nos termos do Parágrafo Unico do Art. 17 do Regulamento dos Programas de Pós-Graduação Stricto Sensu da Universidade Federal Fluminense:
+                            </p>
+                    </div>
+                </div>
+            </div>
+				<div class="container">
+					<div class="row">
+  				{{#each this}}
+						<p class="disciplina">
+							{{inc @index}}. Nome da disciplina: “{{this.disciplina}}”
+							<br>
+							&nbsp;Carga horária total: {{this.credits}} horas
+							<br>
+							&nbsp;Período: {{this.year}}.{{this.semester}}
+							<br>
+							&nbsp;Nota final: {{this.grade}}
+							<br>
+							&nbsp;Situação final: {{this.situation}}
+						</p>
+  				{{/each}}
+					</div>
+				</div>
+  				<div class="container">
+					<div class="row">
+						<p class="assinatura">
+						  Niteroi, <span class="diaHora"></span>.
+						  <br>
+						  <br>
+						  <br>
+						  <br>
+						  <NOME DO COORDERNADOR>
+						  <br>
+						  Coordenador de Pós-Graduação
+					  </p>
+					</div>
+				</div>
+  				<div class="container" style="">
+					<div class="row">
+					  <div class="col-sm-6">
+					  </div>
+					  <div class="col-sm-6">
+						<footer>
+						  <p>
+							<strong>Pós Graduação em Computação - Instituto de Computação</strong>
+							<br/>
+							Telefone: (21) 2222-2323
+							<br/>
+							Sitio eletrônico: posgrad.ic.uff.br
+						  </p>
+					  	</footer>
+					  </div>
+					</div>
+				</div>
+  </div>
+  			{{/each}}
+        </div>
+		<style>
+		  .painel{
+    max-width: 750px;
+
+}
+
+.painel .container{
+    width: 100%;
+
+}
+
+.uff{
+		  border-top: 1px solid black;
+}
+
+img{
+    max-width: 140px;
+}
+
+.separadorCabecalho{
+    margin: 0;
+    border: none;
+    height: 1px;
+    background-color: black;
+	width: 300px;
+}
+
+.separadorRodape{
+    margin-left: 0;
+    border: none;
+    height: 1px;
+    background-color: black;
+	width: 300px;
+	float: right;
+}
+
+.cabecalho{
+    height: 100px;
+	margin-left: 50px;
+	margin-bottom: 50px;
+}
+
+.texto{
+    height: 100%;
+}
+
+.titulo{
+    text-align: center;
+    font-size: 20px;
+    margin: 10px;
+	font-family: "Times New Roman", Times, Serif;
+}
+
+.paragrafo{
+    text-indent: 30px;
+	font-family: "Times New Roman";
+	font-size: 18px;
+}
+
+.disciplina{
+    padding-left: 50px;
+    text-indent: -15px;
+	font-family: "Times New Roman";
+	font-size: 18px;
+}
+
+.assinatura{
+	font-family: "Times New Roman";
+	text-align: center;
+	font-size: 18px;
+	text-align: center;
+    padding-top: 60px;
+}
+
+footer{
+		      padding-top: 9cm;
+	font-family: "Times New Roman";
+	font-size: 12px;
+	text-align: right;
+		  page-break-after: always;
+}
+footer > p{
+		  border-top: 1px solid;
+		  color: grey;
+}
+</style>})
